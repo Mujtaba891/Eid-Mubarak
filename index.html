@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Eid Mubarak</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: #1a3c34; /* Simple dark green background */
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            color: #fff;
+        }
+        #section1, #section2 {
+            max-width: 800px;
+            padding: 20px;
+            border-radius: 30px;
+        }
+        #section1 {
+            display: block;
+        }
+        #section2 {
+            display: none;
+        }
+        header {
+            margin-bottom: 20px;
+        }
+        header h1 {
+            color: #e74c3c;
+            background: linear-gradient(90deg, #f39c12, #8e44ad, #3498db);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        header h2 {
+            font-size: 1.5em;
+            background: linear-gradient(90deg, #ffd700, #8e88ad, #ff7e5f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+        input[type="text"], textarea {
+            padding: 10px;
+            font-size: 1em;
+            margin-bottom: 10px;
+            border-radius: 20px;
+            background: lightgrey;
+            border: none;
+            width: 200px;
+            text-align: center;
+        }
+        .bottom{
+         padding: 10px 20px;
+         border: 2px solid orangered;
+         border-radius: 20px;
+         align-items: center;
+         justify-content: space-evenly;
+         display: flex;
+        }
+        textarea {
+ resize: none;
+ height: 20px;
+ border: 1px solid dodgerblue;
+ outline-color: greenyellow;
+}
+        
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            margin: 5px;
+            border: 2px solid greenyellow;
+            border-radius: 15px;
+            cursor: pointer;
+            background-color: #4f8205;
+            color: #fff;
+        }
+        button.refresh-btn {
+            background-color: #4f8205;
+        }
+        .top{
+         display: flex;
+        }
+        /* Decorated Styles for Section 2 */
+        .decorated body {
+            background: linear-gradient(45deg, #1a3c34, #ff4500, #ffd700, #00cc66);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .decorated #section2 {
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border: 4px solid transparent;
+            animation: borderPulse 3s infinite;
+        }
+        @keyframes borderPulse {
+            0% { border-color: #ffd700; box-shadow: 0 0 10px #ffd700; }
+            50% { border-color: #ff4500; box-shadow: 0 0 20px #ff4500; }
+            100% { border-color: #ffd700; box-shadow: 0 0 10px #ffd700; }
+        }
+        .decorated #wishText {
+            text-shadow: 0 0 15px #ffd700, 0 0 25px #ff4500;
+            animation: glow 1.5s infinite alternate;
+        }
+        @keyframes glow {
+            0% { text-shadow: 0 0 10px #ffd700, 0 0 20px #ff4500; }
+            100% { text-shadow: 0 0 20px #ffd700, 0 0 40px #ff4500; }
+        }
+        .lights {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: radial-gradient(circle, #fff 10%, #ffd700 50%, transparent 70%);
+            border-radius: 50%;
+            animation: twinkle 2s infinite;
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.3); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Section 1: Simple Initial Page -->
+    <div id="section1">
+        <p id="initialWish">Mujtaba Alam is wishing you Eid Mubarak!</p>
+        <input type="text" id="userNameInput" placeholder="Enter your name🔍">
+        <button onclick="goToSection2()">Decorate</button>
+    </div>
+
+    <!-- Section 2: Decorated Page -->
+    <div id="section2">
+        <header>
+            <h1>🕋🕌Happy Eid Mubarak🥀🎉</h1>
+            <h2 id="userNameHeader"></h2>
+        </header>
+        <main>
+          <p id="wishText">Mujtaba Alam is wishing you Eid Mubarak!</p>
+          <div class="top">
+          <button onclick="updateWish()">Get Wish</button>
+          <button onclick="speakWish()">🔊</button>
+          <button id="shareBtn" style="display: none;">Share</button>
+         <button class="refresh-btn" onclick="refreshWish()">🔁<br> refresh</button>
+          </div>
+            <br>
+            <div class="bottom">
+            <textarea id="shareNameInput" placeholder="Enter your name to share"></textarea>
+            <button onclick="shareWish()">Send</button>
+            </div>
+        </main>
+        <p>click<a href="https://youtube.com/@team-kashmiri-hacker?si=m6QE3mXZIKvXuprR" target="_blank"> here </a>to subscribe our channel on YouTube</p>
+        <p><a href="https://youtube.com/@team-kashmiri-hacker?si=m6QE3mXZIKvXuprR"> <img src="https://i.pinimg.com/736x/7d/dc/54/7ddc545046b212d9ecc8eef83569222b.jpg" alt="YouTube Logo" style="width: 50px;"></a></p>
+        <p>click🔁to get more wishes</p>
+    </div>
+
+    <!-- Replace with actual Eid song URL -->
+    <audio id="eidSound" src="https://example.com/eid-mubarak-song.mp3" preload="auto"></audio>
+
+    <script>
+        const wishes = [
+            "May this Eid bring joy, peace, and prosperity to your life. Eid Mubarak!",
+            "Wishing you and your family a blessed Eid filled with love and happiness.",
+            "On this auspicious occasion of Eid, may Allah bless you with happiness and grace your home with warmth and peace.",
+            "Eid Mubarak to you and your loved ones. May Allah’s blessings be with you today and always.",
+            "Sending you warm wishes on Eid. May this day bring peace and happiness to everyone.",
+            "May the magic of this Eid bring lots of happiness in your life. Eid Mubarak!",
+            "Eid is a day to cheer and to laugh with all your heart. It’s a day to be grateful to Allah for all of his heavenly blessings on us. Wishing you a happy Eid",
+            "Eid Mubarak! May Allah fulfill all your wishes and bless you with happiness that is eternal.",
+            "May Allah bless you with kindness, patience, and love on this auspicious day of Eid. Eid Mubarak!",
+            "On this Eid, may Allah bless you with wisdom and strength to overcome all your hurdles and celebrate the day with love and warmth.",
+            "May Allah’s blessings be showered on you on this Eid. Eid Mubarak!",
+            "May the divine blessings of Allah bring you hope, faith, and joy on Eid and forever. Eid Mubarak!",
+            "Sending you warm wishes on Eid and wishing that it brings your way ever joys and happiness. Remember me in your prayers.",
+            "Eid Mubarak! May Allah’s blessings be with you today and always. Enjoy the celebrations with your loved ones.",
+            "May Allah accept your sacrifices and grant all your wishes on this Eid. Eid Mubarak!",
+            "Eid is a day to share what we have and to care for others. May you have a wonderful Eid.",
+            "Wishing you and your family a joyful Eid. Eid Mubarak!",
+            "May Allah bless you with happiness and grace your home with warmth and peace on this Eid. Eid Mubarak!",
+            "Eid Mubarak to you and your family. May the guidance and blessings of Allah be with you always.",
+            "May this Eid be a special one for you and your family, filled with peace and prosperity. Eid Mubarak!"
+        ];
+
+        function goToSection2() {
+            const userName = document.getElementById('userNameInput').value.trim();
+            document.getElementById('section1').style.display = 'none';
+            document.getElementById('section2').style.display = 'block';
+            document.body.classList.add('decorated');
+            document.getElementById('eidSound').play().catch(() => console.log("Sound blocked by browser"));
+
+            // Set initial wish with sender's name
+            updateWish(userName);
+
+            // Add twinkling lights
+            for (let i = 0; i < 25; i++) {
+                const light = document.createElement("div");
+                light.classList.add("lights");
+                light.style.left = `${Math.random() * 100}vw`;
+                light.style.top = `${Math.random() * 100}vh`;
+                light.style.animationDelay = `${Math.random() * 2}s`;
+                document.body.appendChild(light);
+            }
+        }
+
+        function updateWish(userName = document.getElementById('userNameInput').value.trim()) {
+            document.getElementById('userNameHeader').textContent = `EID MUBARAK from ${userName || 'You'} to you!`;
+            refreshWish(userName);
+            document.getElementById('shareBtn').style.display = userName ? 'inline-block' : 'none';
+        }
+
+        function speakWish() {
+            const wish = document.getElementById('wishText').textContent;
+            const speech = new SpeechSynthesisUtterance(wish);
+            window.speechSynthesis.speak(speech);
+        }
+
+        function refreshWish(userName = document.getElementById('userNameInput').value.trim()) {
+            const randomWish = wishes[Math.floor(Math.random() * wishes.length)];
+            document.getElementById('wishText').textContent = `${userName || 'Mujtaba Alam'} is wishing you Eid Mubarak! ${randomWish}`;
+        }
+
+        function shareWish() {
+            const userName = document.getElementById('shareNameInput').value.trim() || document.getElementById('userNameInput').value.trim();
+            const url = `${window.location.href}?name=${encodeURIComponent(userName)}`;
+            const shareText = `${userName || 'Mujtaba Alam'} is wishing you Eid Mubarak! Check it out: ${url}`;
+            
+            navigator.clipboard.writeText(shareText).then(() => {
+                alert("Link copied! Share it on WhatsApp, Twitter, or anywhere!");
+            });
+
+            const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
+            window.open(whatsappUrl, "_blank");
+        }
+
+        // Load name from URL and redirect to Section 2
+        const urlParams = new URLSearchParams(window.location.search);
+        const name = urlParams.get("name");
+        if (name) {
+            document.getElementById('userNameInput').value = decodeURIComponent(name);
+            document.getElementById('initialWish').textContent = `${decodeURIComponent(name)} is wishing you Eid Mubarak!`;
+            goToSection2(); // Directly go to Section 2
+        }
+
+        // Attach share function to button
+        document.getElementById('shareBtn').onclick = shareWish;
+    </script>
+</body>
+</html>
